@@ -2,7 +2,7 @@
   <el-container style="height: 100vh; border: 1px solid #eee">
     <el-aside style="width:200px ;min-height:100vh; background-color:#001529;">
       <div
-        style="height: 60px;background-color: #8c939d;color:white;display: flex;align-items: center;justify-content: center;">
+        style="height: 60px;background-color: #000c17;color:white;display: flex;align-items: center;justify-content: center;">
         logo
       </div>
       <el-menu style="border:none;" active-text-color="#fff" text-color="rgba(255,255,255,0.65)"
@@ -21,14 +21,17 @@
         <el-menu-item>
           系统首页
         </el-menu-item>
-        <el-submenu>
+        <el-submenu index="/submenu">
           <template slot="title">
             <i class="el-icon-menu">
               <span>系统首页</span>
             </i>
           </template>
-          <el-menu-item>
+          <el-menu-item index="/submenu">
             用户信息
+          </el-menu-item>
+          <el-menu-item>
+            管理员信息
           </el-menu-item>
         </el-submenu>
       </el-menu>
@@ -77,7 +80,43 @@ body {
   color: #333;
 }
 
-el-menu--inline el-menu-item {
+.el-menu--inline .el-menu-item {
   background-color: #000c17 !important;
+}
+
+.el-menu-item:hover,
+.el-submenu__title:hover {
+  color: #fff !important;
+}
+
+.el-submenu__title:hover i {
+  color: #fff !important;
+}
+
+.el-menu-item:hover i {
+  color: #fff !important;
+
+}
+
+.el-menu-item.is-active {
+  background-color: #1890ff !important;
+  border-radius: 5px !important;
+  margin: 4px !important;
+}
+
+.el-submenu__title.is-opened {
+  background-color: #1890ff !important;
+  border-radius: 5px !important;
+  margin: 4px !important;
+}
+
+.el-menu-item {
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+.el-submenu__title {
+  height: 40px !important;
+  line-height: 40px !important;
 }
 </style>
