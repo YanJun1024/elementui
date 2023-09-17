@@ -76,4 +76,8 @@ body {
 .el-aside {
   color: #333;
 }
+
+el-menu--inline el-menu-item {
+  background-color: #000c17 !important;
+}
 </style>
