@@ -14,13 +14,21 @@
             </i>
           </template>
         </el-menu-item>
-        <el-menu-item index="/element"> Element页面</el-menu-item>
-        <el-menu-item>
-          系统首页
+        <el-menu-item index="/element">
+          <template>
+            <i class="el-icon-house">
+              <span>系统首页</span>
+            </i>
+          </template>
         </el-menu-item>
-        <el-menu-item>
-          系统首页
+        <el-menu-item index="/2">
+          <template>
+            <i class="el-icon-house">
+              <span>系统首页</span>
+            </i>
+          </template>
         </el-menu-item>
+
         <el-submenu index="/submenu">
           <template slot="title">
             <i class="el-icon-menu">
@@ -30,7 +38,7 @@
           <el-menu-item index="/submenu">
             用户信息
           </el-menu-item>
-          <el-menu-item>
+          <el-menu-item index="/submenu2">
             管理员信息
           </el-menu-item>
         </el-submenu>
@@ -113,10 +121,25 @@ body {
 .el-menu-item {
   height: 40px !important;
   line-height: 40px !important;
+  margin: 4px !important;
 }
 
 .el-submenu__title {
   height: 40px !important;
   line-height: 40px !important;
+  margin: 4px !important;
+}
+
+.el-submenu .el-menu-item {
+  height: 40px !important;
+  line-height: 40px !important;
+  margin: 4px !important;
+}
+
+.el-submenu .el-menu-item.is-active {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 45px;
+  min-width: 24px;
 }
 </style>
