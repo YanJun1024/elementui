@@ -1,12 +1,13 @@
 <template>
   <el-container style="height: 100vh; border: 1px solid #eee">
-    <el-aside style="width:200px ;min-height:100vh; background-color:#001529;">
+    <el-aside :width="asideWidth" style="min-height:100vh; background-color:#001529;">
       <div
         style="height: 60px;background-color: #000c17;color:white;display: flex;align-items: center;justify-content: center;">
-        logo
+        <img src="@/assets/logo.png" alt="" style="width: 40px;height: 40px;">
+        <span class="logo-title" v-show="!isCollapse">Vue-Admin</span>
       </div>
-      <el-menu style="border:none;" active-text-color="#fff" text-color="rgba(255,255,255,0.65)"
-        background-color="#001529" :default-activer="$route.path" router>
+      <el-menu :collapse="isCollapse" :collapse-transition="false" style="border:none;" active-text-color="#fff"
+        text-color="rgba(255,255,255,0.65)" background-color="#001529" :default-activer="$route.path" router>
         <el-menu-item index="/">
           <template>
             <i class="el-icon-house">
@@ -47,15 +48,28 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span>王小虎</span>
+        <i :class="collapseIcon" style="width:26px;font-size: 36px;" @click="handleCollapse"></i>
+        <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-left: 20px;">
+          <!-- <el-breadcrumb-item :to="{ path: '/submenu2' }">首页</el-breadcrumb-item> -->
+          <el-breadcrumb-item :to="{ path: '/1' }"><a href="/">活动管理</a></el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/element' }"><a href="/">活动管理</a></el-breadcrumb-item>
+        </el-breadcrumb>
+        <div style="flex:1;width: 0;display: flex;align-items: center;justify-content: flex-end;">
+          <el-dropdown placement="bottom">
+
+            <div style="display: flex;align-items: center; cursor:default">
+              <img src="@/assets/logo.png" alt="" style="width: 40px;height: 40px;">
+              <span>游客</span>
+
+            </div>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>个人信息</el-dropdown-item>
+              <el-dropdown-item>修改密码</el-dropdown-item>
+              <el-dropdown-item>退出登录</el-dropdown-item>
+
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </el-header>
 
       <el-main>
@@ -67,9 +81,23 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isCollapse: false,
+      asideWidth: "200px",
+      collapseIcon: "el-icon-s-fold",
+
+    };//不收缩
   },
+  methods: {
+    handleCollapse() {
+      this.isCollapse = !this.isCollapse;
+      this.asideWidth = this.isCollapse ? "64px" : "200px";
+      this.collapseIcon = this.isCollapse ? "el-icon-s-unfold" : "el-icon-s-fold";
+    },
+  },
+
 };
+
 </script>
 <style>
 html,
@@ -78,11 +106,11 @@ body {
   margin: 0;
 }
 
-.el-header {
+/* .el-header {
   background-color: #b3c0d1;
   color: #333;
   line-height: 60px;
-}
+} */
 
 .el-aside {
   color: #333;
@@ -141,5 +169,26 @@ body {
   line-height: 50px;
   padding: 0 45px;
   min-width: 24px;
+}
+
+.el-aside {
+  transition: width .2s;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+}
+
+logo-title {
+  margin-left: 10px;
+  font-size: 20px;
+  transition: all 0.2s;
+}
+
+.el-header {
+  /* background-color: #000c17; */
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+  display: flex;
+  align-items: center;
 }
 </style>
